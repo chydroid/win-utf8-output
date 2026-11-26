@@ -25,24 +25,16 @@ Windows 中文系统上，OpenCode 以无窗口方式运行 PowerShell（pwsh，
 
 ## 安装
 
-### 方式 1：npm（发布后）
-
-```bash
-opencode plugin add opencode-win-utf8@latest
-```
-
-`@latest` 会随 OpenCode 启动每 24h 自动检查并更新；也可固定版本
-`opencode plugin add opencode-win-utf8@0.1.0`。
-
-### 方式 2：GitHub 仓库
+### 方式 1：GitHub 仓库（推荐）
 
 ```bash
 opencode plugin add github:chydroid/win-utf8-output#main
 ```
 
-带 `#main` 的 Git 包会随启动自动检查更新；不带 ref 则固定已安装版本。
+带 `#main` 的 Git 包会随 OpenCode 启动（及每 24h）自动拉取最新提交；
+不带 ref 则固定已安装版本。
 
-### 方式 3：本地目录（开发/自用）
+### 方式 2：本地目录（开发/自用）
 
 `opencode.json`（全局或项目级）：
 
@@ -58,7 +50,7 @@ opencode plugin add github:chydroid/win-utf8-output#main
 opencode plugin list      # 查看已安装
 opencode plugin check     # 检查更新
 opencode plugin update    # 更新
-opencode plugin remove opencode-win-utf8@latest   # 卸载
+opencode plugin remove "github:chydroid/win-utf8-output#main"   # 卸载
 ```
 
 卸载后用 `-id` 前缀可在配置里禁用：`"plugins": ["-win-utf8-output"]`。
@@ -95,11 +87,17 @@ try {
 - 小写 cmdlet（`get-content`）+ 纯 ASCII 内容无法被工具层识别
   （模型惯例写 PascalCase，实际罕见；shell 层不受此限制）。
 
-## 发布
+## 发布（维护者）
+
+本插件通过 GitHub 分发（无 npm 依赖）：
 
 ```bash
-# npm
-npm publish            # 或 npm publish --access restricted (scoped)
-
-# 或推 GitHub，用户按方式 2 安装
+cd win-utf8-output
+# 1. 修改代码 / 在 package.json 里升 version
+git commit -am "v0.2.0: ..."
+git tag v0.2.0            # 可选：semver tag 供 #semver: 用户锁定版本
+git push origin main
 ```
+
+- `#main` 用户：下次 OpenCode 启动/24h 检查时自动拉到新提交；
+- `#semver:v0.2.0` 用户：显式锁 tag 的不会被 main 的更新影响。
