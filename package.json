@@ -1,0 +1,30 @@
+{
+  "name": "opencode-win-utf8",
+  "version": "0.1.0",
+  "description": "OpenCode plugin: force UTF-8 console I/O for PowerShell shells on Windows, fixing GBK(936) mojibake in shell tool and Shell-box output",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "windows",
+    "powershell",
+    "pwsh",
+    "utf-8",
+    "encoding",
+    "mojibake"
+  ],
+  "license": "MIT",
+  "author": "CY",
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
