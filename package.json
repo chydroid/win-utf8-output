@@ -19,7 +19,7 @@
     "encoding",
     "mojibake"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": "CY",
   "engines": {
     "node": ">=18"
